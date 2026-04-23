@@ -8,13 +8,13 @@ pipeline {
         CLUSTER_NAME   = 'do2509' // Cần thay bằng tên Cluster thật của bạn
         
         // --- Thông tin Image ---
-        IMAGE_NAME     = 'do2509/tvtien'
+        IMAGE_NAME     = 'do2509/dungpn'
         IMAGE_TAG      = "youtube.v1.0.${env.BUILD_NUMBER}"
         ECR_URL        = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
         FULL_IMAGE     = "${ECR_URL}/${IMAGE_NAME}:${IMAGE_TAG}"
         
         // --- Cấu hình K8s ---
-        NAMESPACE      = "do2509-tvtien"
+        NAMESPACE      = "do2509-dungpn"
         HELM_PATH      = "./helmchart"
         VALUES_FILE    = "${HELM_PATH}/values-do2509.yaml"
     }
@@ -22,7 +22,7 @@ pipeline {
     stages {
         stage('🚀 Checkout Code') {
             steps {
-                git url: 'https://github.com/trantiendt9/vue-nodejs-youtube-clone.git',
+                git url: 'https://github.com/tonyydung126/vue-nodejs-youtube-clone.git',
                     branch: 'master',
                     credentialsId: 'github-to-jenkins'
             }
